@@ -1,0 +1,82 @@
+<!-- <div class="col-md-4">
+  <h1>Register</h1>
+  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" ng-submit="register()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+        <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+      </div>
+  </form>
+</div> -->
+
+
+<!-- ================================== -->
+
+
+<div class="header clearfix">
+  <h4 class="loginHeading">Register</h4>
+  <button class="offcanvas__trigger--open btn" data-offcanvas-open="my-navigation" onclick="window.location.href = '#/login'" style="outline:0;">
+    <img src="./partials/images/register/back_btn.png" alt="rideShare" class="img-responsive" style="width:30px; height:28px";>
+  </button>
+</div>
+
+      <div class="container">
+
+        <div class="row top-buffer"></div>
+
+        <div class="row">
+            <!-- <div id="small-img" class="col-md-2 col-md-offset-5"> -->
+             <div class="headerImgReg"> 
+              <a href="#">
+                <img src="./partials/images/register/add_picture.png" alt="rideShare" class="img-responsive center-block">
+                <img src="./partials/images/register/uploadpicture.png" alt="rideShare" class="img-responsive center-block">
+              </a>
+              <!-- <a href="#">Upload Picture</a> -->
+            </div>
+            
+        </div>
+
+      <!-- <div ng-controller="usersController"> -->
+        <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+        <form class="form" ng-submit="register()">
+        <!-- <form ng-submit="createUser()" name="myForm"> -->
+          <div class="form-group col-xs-6">
+            <input type="text" class="register-input" name="fname" placeholder="First name" ng-model="registerForm.fname" minlength="3" maxlength="20" required></input>
+            <!-- <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid"> -->
+          </div>
+          <div class="form-group col-xs-6">
+            <input type="text" class="register-input" name="lname" placeholder="Last name" ng-model="registerForm.lname" minlength="3" maxlength="20" required></input>
+          </div>
+          <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+            <!-- <input type="text" class="register-input" placeholder="User name" ng-model="uname" minlength="3" maxlength="20" required></input> -->
+            <input type="text" class="register-input" name="username" placeholder="User name" ng-model="registerForm.username" required>
+          </div>
+          <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+            <!-- <input type="password" class="register-input" placeholder="Password" ng-model="password" minlength="3" maxlength="20" required></input> -->
+            <input type="password" class="register-input" name="password" placeholder="Password" ng-model="registerForm.password" required>
+          </div>
+<!--           <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div> -->
+          <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+            <button type="submit" class="btn btn-warning btn-block">Create</button>
+          </div>
+        </form>
+
+        <div class="row top-buffer"></div>
+
+      <!-- </div> -->
+      
+    </div> <!-- End container div -->

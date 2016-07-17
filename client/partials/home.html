@@ -1,0 +1,202 @@
+<style>
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	#map-responsive {
+		height: 100%;
+	}
+</style>
+
+<div class="header clearfix">
+    <h4 class="loginHeading">Drivers</h4>
+
+<!-- Navigation bar -->
+    <div class="jquery-script-ads" align="center" style="margin:0px auto;">
+      <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-2783044520727903";
+        /* jQuery_demo */
+        google_ad_slot = "2780937993";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+    &nbsp&nbsp
+    <button class="offcanvas__trigger--open btn" data-offcanvas-open="my-navigation" style="outline:0;">
+      <img src="./partials/images/navigation/nav.png" alt="rideShare" class="img-responsive center-block">
+    </button>
+
+    <section id="my-navigation" class="offcanvas">
+      <div class="header2 clearfix">
+          <img style="float:left" src="./partials/images/navigation/navigation.png" alt="rideShare" class="img-responsive">
+
+          <div ng-controller="loginController">
+            <h4 class="loginHeading">{{message}}</h4>
+          </div>
+        
+
+          <!-- <h4 class="loginHeading">Username</h4> -->
+      </div> <br>
+
+      <table style="width:100%" border="0">
+        <tr>
+          <td>
+            <img style="float:left;margin: 10px;" src="./partials/images/navigation/edit.png" alt="rideShare" class="img-responsive"></td>
+          <td align="left"><p>Edit Profile</p></td> 
+        </tr>
+        <tr>
+          <td>
+            <img style="float:left;margin: 10px;" src="./partials/images/navigation/history.png" alt="rideShare" class="img-responsive">
+          </td>
+          <td align="left"><p>History</p></td> 
+        </tr>
+        <tr>
+          <td>
+            <img style="float:left;margin: 10px;" src="./partials/images/navigation/settings.png" alt="rideShare" class="img-responsive">
+          </td>
+          <td align="left"><p>Settings</p></td> 
+        </tr>
+        <tr>
+          <td>
+            <img style="float:left;margin: 10px;" src="./partials/images/navigation/help.png" alt="rideShare" class="img-responsive">
+          </td>
+          <td align="left"><p>Help</p></td> 
+        </tr>
+        <tr>
+          <td>
+            <img style="float:left;margin: 10px;" src="./partials/images/navigation/about.png" alt="rideShare" class="img-responsive">
+          </td>
+          <td align="left"><p>About</p></td> 
+        </tr>
+        <tr>
+          <td>
+          	<img style="float:left;margin: 10px;" src="./partials/images/navigation/logout.png" alt="rideShare" class="img-responsive" ng-submit=logOut()>
+          </td>
+          <td align="left">
+            <div ng-controller="logoutController">
+              <!-- <a ng-click='logout()' class="logoutBtn">Logout</a> -->
+              <button style="margin-left: -6px;" ng-click='logout()' class="logoutBtn"><p class="logout">Logout</p></button>
+            </div>
+          </td> 
+        </tr>
+        
+      </table>
+
+
+      <br><br>
+      <button style="margin-left: -12px; outline:0;" class="offcanvas__trigger--close btn" data-offcanvas-close="my-navigation">Close</button>
+    </section>
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="./partials/css/iptools-jquery-offcanvas.min.js"></script>
+      <script>
+      $(document).ready(function() {
+          $('#my-navigation').iptOffCanvas({
+            baseClass: 'offcanvas',
+            type: 'left' // top, right, bottom, left.
+          });
+        });
+      </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36251023-1']);
+      _gaq.push(['_setDomainName', 'jqueryscript.net']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+     
+  <!-- End Navigation bar -->
+</div>
+
+
+	<div class="header2 clearfix">
+	  <div class="form-group col-xs-6">
+	    <div class ="myLocationLable">
+	      <label > My Loation </label>
+	    </div>
+	    <input type="text" class="register-input" style="text-align:center;" ng-model="myLocation"></input>
+	  </div>
+	  <div class="form-group col-xs-6">
+	    <div class ="destinationLable">
+	      <label> Destination </label>
+	    </div>
+	    <input type="text" class="register-input" style="text-align:center;" ng-model="destination"></input>
+	  </div>
+	</div>
+
+
+	<div id="map-responsive"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map-responsive'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 15
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Hisoban Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+    </script>
+
+<!-- hiso virtusa -->
+<!--     <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh_zPivIBegT1ll2UjT1zacc4zpDMSEYs&callback=initMap">
+    </script>
+ -->
+<!-- hiso mob -->
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBek2QKJkAxIhJ6AHP1Mu0hMa_lGpN-mkg&callback=initMap">
+    </script> -->
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnycWatbGyK6ldFqErjFtko1yeMclNUOA&amp;sensor=true"></script>
+
+
+<!-- <h1>Yo!</h1>
+
+<div ng-controller="logoutController">
+  <a ng-click='logout()' class="btn btn-default">Logout</a>
+</div> -->

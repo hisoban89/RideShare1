@@ -1,0 +1,319 @@
+/* Space out content a bit */
+html, body, .container {
+    /*height:100%;*/
+}
+body {
+  /*padding-top: 20px;*/
+  padding-bottom: 20px;
+  /*background-color:lightgrey;*/
+  text-align: justify;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 0px;
+  border-bottom: 0px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: -1px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+.header{
+    background-color: #333;
+}
+
+/* Edited Style*/
+
+.loginHeading {
+    text-align: center;
+    color:white;
+    margin-top:25px;
+}
+
+.headerImg {
+    display: block;
+    margin: 47px auto;
+    width: 55%;
+}
+
+
+.register-input {
+    display: block;
+    width: 100%;
+    height: 38px;
+    margin-top: 2px;
+    font-weight: 500;
+    background: transparent;
+    border: 0px solid;
+    border-bottom: 2px solid #808080;
+    color:white;
+}
+
+.row li {
+  width: 15%;
+  float: left;
+  list-style-type: none;
+}
+
+img {
+  border: 0 none;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.top-buffer { margin-top:20px; }
+
+
+.container-fluid {
+  background-color: #333;
+}
+
+.navbar-default .navbar-brand {
+  color:white;
+  text-align: center;
+}
+
+.navbar-brand {
+  text-align: center;
+}
+
+.myLocationLable {
+  text-align: center;
+  color: white;
+}
+
+.destinationLable {
+  text-align: center;
+  color: white;
+}
+
+.header2 {
+  background-color: #20252d;
+}
+
+.map-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+/*navigation*/
+
+#my-navigation {
+  background-color: rgba(51,51,51,.95);
+  color: #fff;
+  text-align: center;
+}
+
+#my-navigation p {
+  padding: 12px;
+  /*border-bottom: 1px dotted #eee;*/
+}
+
+.offcanvas__trigger--open {
+  background-color: rgba(255,255,255,0);
+  padding: 0px 0px;
+  cursor: pointer;
+  margin-top: -57px;
+}
+
+.offcanvas__trigger--close {
+  background-color: rgba(255,255,255,0);
+  padding: 0px 0px;
+  cursor: pointer;
+  margin-top: -57px;
+}
+
+.headerImg1 {
+  margin-top: -55px;
+}
+
+.logoutBtn {
+  background-color: rgba(255,255,255,0);
+  border: none;
+  outline:0;
+}
+
+#my-navigation {
+  width: 250px;
+}
+
+#HeadBar {
+    background-color: #ffffff;
+    height: 10%;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+#HeadBar {
+    margin: 0px;
+    padding: 10px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.offcanvas__trigger--open {
+  outline:0;
+}
+
+
+
+
+
+
+
+
+
+/*Mobile Responsive*/
+
+
+/*@media only screen and (min-width:307px) and (max-width: 320px) {
+  #my-navigation {
+    width: 250px;
+  }
+}*/
+
+@media only screen and (max-width: 320px) {
+  #my-navigation {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-height: 518px) {
+  
+  .headerImg {
+    width:50%;
+    margin-top: 24px;
+  }
+  .headerImg1 {
+    margin-top: -58px;
+    width: 201px;
+    margin-left: 40px;
+  }
+  .register-input {
+    height: 23px;
+  }
+  
+  .navigationController {
+        margin-top: -43px;
+  }
+}
+
+@media only screen and (max-height: 639px) {
+    
+  .headerImg {
+    width:50%;
+  }
+  .headerImg1 {
+    margin-top: -58px;
+    width: 201px;
+    margin-left: 40px;
+  }
+  .register-input {
+    height: 30px;
+  }
+  .form-group {
+    margin-bottom: 33px;
+  }
+
+
+  /* register page*/
+
+  .headerImgReg {
+    width: 80px;
+    margin: 0 auto -10px;
+
+  }
+
+  .top-buffer {
+    /*margin-top: 12px;*/
+  }
+
+
+
+}
