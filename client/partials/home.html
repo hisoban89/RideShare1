@@ -1,12 +1,13 @@
 <style>
-	html, body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-	}
-	#map-responsive {
-		height: 100%;
-	}
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    /*height: 100%;*/
+  }
 </style>
 
 <div class="header clearfix">
@@ -47,31 +48,31 @@
         <tr>
           <td>
             <img style="float:left;margin: 10px;" src="./partials/images/navigation/edit.png" alt="rideShare" class="img-responsive"></td>
-          <td align="left"><p>Edit Profile</p></td> 
+          <td align="left"><button id="myBtn1" onclick="editFunction()">Edit Profile</button></td> 
         </tr>
         <tr>
           <td>
             <img style="float:left;margin: 10px;" src="./partials/images/navigation/history.png" alt="rideShare" class="img-responsive">
           </td>
-          <td align="left"><p>History</p></td> 
+          <td align="left"><button id="myBtn2" onclick="historyFunction()">History</button></td> 
         </tr>
         <tr>
           <td>
             <img style="float:left;margin: 10px;" src="./partials/images/navigation/settings.png" alt="rideShare" class="img-responsive">
           </td>
-          <td align="left"><p>Settings</p></td> 
+          <td align="left"><button id="myBtn3" onclick="settingsFunction()">Settings</button></td> 
         </tr>
         <tr>
           <td>
             <img style="float:left;margin: 10px;" src="./partials/images/navigation/help.png" alt="rideShare" class="img-responsive">
           </td>
-          <td align="left"><p>Help</p></td> 
+          <td align="left"><button id="myBtn4" onclick="helpFunction()">Help</button></td> 
         </tr>
         <tr>
           <td>
             <img style="float:left;margin: 10px;" src="./partials/images/navigation/about.png" alt="rideShare" class="img-responsive">
           </td>
-          <td align="left"><p>About</p></td> 
+          <td align="left"><button id="myBtn5" onclick="aboutFunction()">About</button></td> 
         </tr>
         <tr>
           <td>
@@ -80,7 +81,7 @@
           <td align="left">
             <div ng-controller="logoutController">
               <!-- <a ng-click='logout()' class="logoutBtn">Logout</a> -->
-              <button style="margin-left: -6px;" ng-click='logout()' class="logoutBtn"><p class="logout">Logout</p></button>
+              <button style="margin-left: -12px;" ng-click='logout()' class="logoutBtn"><p class="logout">Logout</p></button>
             </div>
           </td> 
         </tr>
@@ -89,7 +90,7 @@
 
 
       <br><br>
-      <button style="margin-left: -12px; outline:0;" class="offcanvas__trigger--close btn" data-offcanvas-close="my-navigation">Close</button>
+      <button style="margin-left: -9px; outline:0;" class="offcanvas__trigger--close btn" data-offcanvas-close="my-navigation">Close</button>
     </section>
     <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="./partials/css/iptools-jquery-offcanvas.min.js"></script>
@@ -126,74 +127,256 @@
 	    <div class ="myLocationLable">
 	      <label > My Loation </label>
 	    </div>
-	    <input type="text" class="register-input" style="text-align:center;" ng-model="myLocation"></input>
+	    <!-- <input type="text" class="register-input" style="text-align:center;" ng-model="myLocation"></input> -->
+      <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
 	  </div>
 	  <div class="form-group col-xs-6">
 	    <div class ="destinationLable">
 	      <label> Destination </label>
 	    </div>
-	    <input type="text" class="register-input" style="text-align:center;" ng-model="destination"></input>
+	    <!-- <input type="text" class="register-input" style="text-align:center;" ng-model="destination"></input> -->
+      <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location">
 	  </div>
 	</div>
 
+<!--  -->
 
-	<div id="map-responsive"></div>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
+   <!--  <input id="origin-input" class="controls" type="text"
+        placeholder="Enter an origin location">
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map-responsive'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
+    <input id="destination-input" class="controls" type="text"
+        placeholder="Enter a destination location"> -->
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+    <!-- <div id="mode-selector" class="controls">
+      <input type="radio" name="type" id="changemode-walking" checked="checked">
+      <label for="changemode-walking">Walking</label>
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Hisoban Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+      <input type="radio" name="type" id="changemode-transit">
+      <label for="changemode-transit">Transit</label>
+
+      <input type="radio" name="type" id="changemode-driving">
+      <label for="changemode-driving">Driving</label>
+    </div> -->
+
+
+
+
+<!--  -->
+
+
+<!-- Map -->
+<div id="map" style="height:490px;width:100%;max-width:100%;"></div>
+
+<script>
+  function initMap() {
+    var userPosition = {lat: 6.93622529, lng: 79.8800723};
+
+    var locations = [
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93979, 79.87395 , 4],
+
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93960, 79.86827, 5],
+
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93579, 79.88362, 3],
+
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94427, 79.88135, 2],
+
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94682, 79.87830, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      mapTypeControl: false,
+      center : userPosition,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+
+
+// ======  ======================================
+
+ var origin_place_id = null;
+        var destination_place_id = null;
+        var travel_mode = google.maps.TravelMode.WALKING;
+
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsDisplay.setMap(map);
+
+        var origin_input = document.getElementById('origin-input');
+        var destination_input = document.getElementById('destination-input');
+        var modes = document.getElementById('mode-selector');
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(destination_input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
+
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        origin_autocomplete.bindTo('bounds', map);
+        var destination_autocomplete =
+            new google.maps.places.Autocomplete(destination_input);
+        destination_autocomplete.bindTo('bounds', map);
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        // function setupClickListener(id, mode) {
+        //   var radioButton = document.getElementById(id);
+        //   radioButton.addEventListener('click', function() {
+        //     travel_mode = mode;
+        //   });
+        // }
+        // setupClickListener('changemode-walking', google.maps.TravelMode.WALKING);
+        // setupClickListener('changemode-transit', google.maps.TravelMode.TRANSIT);
+        // setupClickListener('changemode-driving', google.maps.TravelMode.DRIVING);
+
+        function expandViewportToFitPlace(map, place) {
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
         }
+
+        origin_autocomplete.addListener('place_changed', function() {
+          var place = origin_autocomplete.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+          expandViewportToFitPlace(map, place);
+
+          // If the place has a geometry, store its place ID and route if we have
+          // the other place ID
+          origin_place_id = place.place_id;
+          route(origin_place_id, destination_place_id, travel_mode,
+                directionsService, directionsDisplay);
+        });
+
+        destination_autocomplete.addListener('place_changed', function() {
+          var place = destination_autocomplete.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+          expandViewportToFitPlace(map, place);
+
+          // If the place has a geometry, store its place ID and route if we have
+          // the other place ID
+          destination_place_id = place.place_id;
+          route(origin_place_id, destination_place_id, travel_mode,
+                directionsService, directionsDisplay);
+        });
+
+        function route(origin_place_id, destination_place_id, travel_mode,
+                       directionsService, directionsDisplay) {
+          if (!origin_place_id || !destination_place_id) {
+            return;
+          }
+          directionsService.route({
+            origin: {'placeId': origin_place_id},
+            destination: {'placeId': destination_place_id},
+            travelMode: travel_mode
+          }, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
+
+
+
+// ====================================================================================================
+
+
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    //
+    var infowindow = new google.maps.InfoWindow();
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {  
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+// =========================================
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: 'View Details'
+      });
+
+        //marker.setPosition(pos);
         infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+        infoWindow.setContent('<ul><li ng-repeat="user in users">'+
+                                  'Hi user !!!<br> Please book your closest vehicle'+
+                                '</li>'+
+                              '</ul>');
+        // map.setCenter(pos);
+
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+
+
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          'Error: The Geolocation service failed.' :
+                          'Error: Your browser doesn\'t support geolocation.');
+  }
     </script>
 
-<!-- hiso virtusa -->
-<!--     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh_zPivIBegT1ll2UjT1zacc4zpDMSEYs&callback=initMap">
-    </script>
- -->
-<!-- hiso mob -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBek2QKJkAxIhJ6AHP1Mu0hMa_lGpN-mkg&libraries=places&callback=initMap" async defer></script>
+
     <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBek2QKJkAxIhJ6AHP1Mu0hMa_lGpN-mkg&callback=initMap">
     </script> -->
 
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnycWatbGyK6ldFqErjFtko1yeMclNUOA&amp;sensor=true"></script>
 
+
+
+<!-- <div style="height:500px;width:500px;max-width:100%;list-style:none; transition: none;overflow:hidden;">
+
+<div id="gmap-display" style="height:100%; width:100%;max-width:100%;">
+
+<iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Colombo+03,+Colombo,+Western+Province,+Šrilanka&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
+
+</div>
+  <a class="embedded-map-code" href="https://www.dog-checks.com" id="make-map-data">dog-checks.com</a>
+
+  <style>#gmap-display .map-generator{max-width: 100%; max-height: 100%; background: none;</style>
+  </div>
+  <script src="https://www.dog-checks.com/google-maps-authorization.js?id=fcf864e5-c227-6c53-9d23-af5f8e1f50f4&c=embedded-map-code&u=1468822553" defer="defer" async="async"></script> -->
 
 <!-- <h1>Yo!</h1>
 
