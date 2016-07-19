@@ -36,9 +36,11 @@
       <div class="header2 clearfix">
           <img style="float:left" src="./partials/images/navigation/navigation.png" alt="rideShare" class="img-responsive">
 
-          <div ng-controller="loginController">
-            <h4 class="loginHeading">{{message}}</h4>
-          </div>
+
+          <!-- <div ng-controller="loginController"> -->
+            <h4 class="loginHeading">{{username}}xxx</h4>
+
+          <!-- </div> -->
         
 
           <!-- <h4 class="loginHeading">Username</h4> -->
@@ -161,26 +163,186 @@
 
 
 
-<!--  -->
+<!-- ========================================== -->
+
+
+<!-- ===============Trigger/Open The Modal================== -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">×</span>
+    <div align="center" ng-controller='usersController'>
+    <img src="/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+        <ul>
+          <li style="list-style-type: none;" ng-repeat="user in users">
+            Driver First Name : {{user.fname}}<br>
+            Driver Last Name : {{user.lname}}<br>
+          </li>
+        </ul>
+    </div>
+    <div ng-controller="bookingController">
+      <form ng-submit="createBooking()" name="myForm">
+        <input type="hidden" value="booked" class="register-input" ng-model="booking">
+        <button type="submit" class="btn btn-warning btn-block">Confirm</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ====================================== -->
+
+<!-- The Modal -->
+<div id="myModal1" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+    <span class="close1">×</span>
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+       
+      <!-- <div ng-controller="usersController"> -->
+        <!-- <h1>There are {{users.length}} users</h1> -->
+        <!-- <ul>
+          <li style="list-style-type: none;" ng-repeat="user in users"> -->
+           <!--  {{user.fname}}
+            {{user.lname}}
+            {{user.uname}}
+            {{user.password}} -->
+          
+        
+        <form ng-submit="createUser()" name="myForm">
+          <div class="form-group col-xs-6">
+            <input type="text" class="register-input" placeholder="First name" ng-model="fname" minlength="3" maxlength="20" required></input>
+            <!-- <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid"> -->
+          </div>
+          <div class="form-group col-xs-6">
+            <input type="text" class="register-input" placeholder="Last name" ng-model="lname" minlength="3" maxlength="20" required></input>
+          </div>
+          <!-- <div class="row top-buffer"></div> -->
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+
+            <input type="text" class="register-input" ng-model="uname" minlength="3" maxlength="20" required readonly placeholder={{user.uname}}></input>
+
+          </div>
+          <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+            <input type="password" class="register-input" placeholder="Password" ng-model="password" minlength="3" maxlength="20" required></input>
+          </div>
+<!--           <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div> -->
+          <div class="row top-buffer"></div>
+          <div class="row top-buffer"></div>
+          <div class="form-group col-xs-12">
+            <button type="submit" class="btn btn-warning btn-block">Create</button>
+          </div>
+        </form>
+      <!-- </li>
+      </ul> -->
+        <div class="row top-buffer"></div>
+
+      <!-- </div> -->
+
+
+  </div>
+   
+</div>
+
+
+<!-- ====================================== -->
+
+<!-- The Modal -->
+<div id="myModal2" class="modal2">
+
+  <!-- Modal content -->
+  <div class="modal-content2">
+    <span class="close2">×</span>
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+       <p>What started as an app to request premium black cars in a few metropolitan areas is now changing the logistical fabric of cities around the world. Whether it’s a ride, a sandwich, or a package, we use technology to give people what they want, when they want it.
+
+For the women and men who drive with Ride Share, our app represents a flexible new way to earn money. For cities, we help strengthen local economies, improve access to transportation, and make streets safer. When you make transportation as reliable as running water, everyone benefits. Especially when it’s snowing outside.</p>
+  </div>
+   
+</div>
+
+
+
+<!-- ====================================== -->
+
+<!-- The Modal -->
+<div id="myModal3" class="modal3">
+
+  <!-- Modal content -->
+  <div class="modal-content3">
+    <span class="close3">×</span>
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+       <p>Settings</p>
+  </div>
+   
+</div>
+
+<!-- ====================================== -->
+
+<!-- The Modal -->
+<div id="myModal4" class="modal4">
+
+  <!-- Modal content -->
+  <div class="modal-content4">
+    <span class="close4">×</span>
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+       <p>Help</p>
+  </div>
+   
+</div>
+
+<!-- ====================================== -->
+
+<!-- The Modal -->
+<div id="myModal5" class="modal5">
+
+  <!-- Modal content -->
+  <div class="modal-content5">
+    <span class="close5">×</span>
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
+    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
+       <p>Ride Share is the smartest way to get around. One tap and a car comes directly to you. Your driver knows exactly where to go. And payment is completely cashless. <br><br>
+        You can always request everyday cars at everyday prices. But sometimes you need a bit more space. Or you want to go big on style. With Uber, the choice is yours
+       </p>
+  </div>
+   
+</div>
+
+
+<!-- ========================================== -->
 
 
 <!-- Map -->
-<div id="map" style="height:490px;width:100%;max-width:100%;"></div>
+<div id="map" style="height:490px; width:100%; max-width:100%;"></div>
 
 <script>
   function initMap() {
     var userPosition = {lat: 6.93622529, lng: 79.8800723};
 
     var locations = [
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93979, 79.87395 , 4],
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93979, 79.87395 , 4],
 
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93960, 79.86827, 5],
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93960, 79.86827, 5],
 
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93579, 79.88362, 3],
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93579, 79.88362, 3],
 
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94427, 79.88135, 2],
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94427, 79.88135, 2],
 
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94682, 79.87830, 1]
+      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.94682, 79.87830, 1]
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {

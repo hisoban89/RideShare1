@@ -114,4 +114,18 @@ angular.module('myApp').factory('AuthService',
 
     }
 
+    // function GetByUsername(username) {
+    //         return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+    //     }
+
+    function GetByUsername(username) {
+      var deferred = $q.defer();
+      var filtered = $filter('filter')(getUsers(), { username: username });
+      var user = filtered.length ? filtered[0] : null;
+      deferred.resolve(user);
+      return deferred.promise;
+    }
+
+
+
 }]);
