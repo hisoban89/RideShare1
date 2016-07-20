@@ -1,15 +1,3 @@
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  #map {
-    /*height: 100%;*/
-  }
-</style>
-
 <div class="header clearfix">
     <h4 class="loginHeading">Drivers</h4>
 
@@ -38,7 +26,7 @@
 
 
           <!-- <div ng-controller="loginController"> -->
-            <h4 class="loginHeading">{{username}}xxx</h4>
+            <h4 class="loginHeading">{{authentication.user.username}}Hiso</h4>
 
           <!-- </div> -->
         
@@ -141,7 +129,7 @@
 	  </div>
 	</div>
 
-<!--  -->
+<!-- Map Direction mode-selector -->
 
    <!--  <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location">
@@ -161,28 +149,16 @@
     </div> -->
 
 
-
-
-<!-- ========================================== -->
-
-
 <!-- ===============Trigger/Open The Modal================== -->
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<!-- <div id="myModal" class="modal">
 
-  <!-- Modal content -->
   <div class="modal-content">
     <span class="close">×</span>
     <div align="center" ng-controller='usersController'>
     <img src="/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
-    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
-        <ul>
-          <li style="list-style-type: none;" ng-repeat="user in users">
-            Driver First Name : {{user.fname}}<br>
-            Driver Last Name : {{user.lname}}<br>
-          </li>
-        </ul>
+
     </div>
     <div ng-controller="bookingController">
       <form ng-submit="createBooking()" name="myForm">
@@ -193,29 +169,15 @@
 
   </div>
 
-</div>
+</div> -->
 
-<!-- ====================================== -->
-
-<!-- The Modal -->
+<!-- Popup menu The Modal 1 -->
 <div id="myModal1" class="modal1">
 
   <!-- Modal content -->
   <div class="modal-content1">
     <span class="close1">×</span>
-    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">
-    <!-- <h1 id="length">Logged in user length is: {{users.length}}</h1> -->
-       
-      <!-- <div ng-controller="usersController"> -->
-        <!-- <h1>There are {{users.length}} users</h1> -->
-        <!-- <ul>
-          <li style="list-style-type: none;" ng-repeat="user in users"> -->
-           <!--  {{user.fname}}
-            {{user.lname}}
-            {{user.uname}}
-            {{user.password}} -->
-          
-        
+    <img src="./partials/images/login/userLog_icon.png" alt="rideShare" class="img-responsive center-block">        
         <form ng-submit="createUser()" name="myForm">
           <div class="form-group col-xs-6">
             <input type="text" class="register-input" placeholder="First name" ng-model="fname" minlength="3" maxlength="20" required></input>
@@ -256,9 +218,7 @@
 </div>
 
 
-<!-- ====================================== -->
-
-<!-- The Modal -->
+<!-- Popup menu The Modal 2 -->
 <div id="myModal2" class="modal2">
 
   <!-- Modal content -->
@@ -275,9 +235,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
 
 
-<!-- ====================================== -->
-
-<!-- The Modal -->
+<!-- Popup menu The Modal 3 -->
 <div id="myModal3" class="modal3">
 
   <!-- Modal content -->
@@ -290,9 +248,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
    
 </div>
 
-<!-- ====================================== -->
-
-<!-- The Modal -->
+<!-- Popup menu The Modal 4 -->
 <div id="myModal4" class="modal4">
 
   <!-- Modal content -->
@@ -305,9 +261,8 @@ For the women and men who drive with Ride Share, our app represents a flexible n
    
 </div>
 
-<!-- ====================================== -->
 
-<!-- The Modal -->
+<!-- Popup menu The Modal 5 -->
 <div id="myModal5" class="modal5">
 
   <!-- Modal content -->
@@ -326,15 +281,15 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 <!-- ========================================== -->
 
 
-<!-- Map -->
-<div id="map" style="height:490px; width:100%; max-width:100%;"></div>
+<!-- Google Map APIs -->
+<div id="map" style="height:100vh; width:100%; max-width:100%;"></div>
 
 <script>
   function initMap() {
     var userPosition = {lat: 6.93622529, lng: 79.8800723};
 
     var locations = [
-      ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93979, 79.87395 , 4],
+      ['<form class="form" ng-submit="booking()"><input type="hidden" name="booking" value="booked" class="register-input" placeholder="Booking" ng-model="bookingForm.booking"></input><button type="submit" class="btn btn-warning btn-block" id="myBtn">Confirmmm</button></form>', 6.93979, 79.87395 , 4],
 
       ['<div ng-controller="bookingController"><input type="hidden" value="booked" class="register-input" placeholder="Booking" ng-model="booking"></input><button class="btn btn-warning btn-block" id="myBtn" onclick="myFunction()">Confirm</button></div>', 6.93960, 79.86827, 5],
 
@@ -354,7 +309,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
 
 
-// ======  ======================================
+// Directions Service
 
  var origin_place_id = null;
         var destination_place_id = null;
@@ -450,8 +405,11 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
 
 
-// ====================================================================================================
+// Multiple markers
 
+  // var image        = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+  var image_cabs = 'http://maps.google.com/mapfiles/ms/micons/cabs.png';
+  var image_person = 'http://maps.google.com/mapfiles/ms/micons/man.png';
 
     var infoWindow = new google.maps.InfoWindow({map: map});
     //
@@ -462,6 +420,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
       for (i = 0; i < locations.length; i++) {  
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          icon: image_cabs,
           map: map
         });
 
@@ -473,7 +432,8 @@ For the women and men who drive with Ride Share, our app represents a flexible n
         })(marker, i));
       }
 
-// =========================================
+
+// geolocation
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -485,6 +445,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
         var marker = new google.maps.Marker({
         position: pos,
+        icon: image_person,
         map: map,
         title: 'View Details'
       });

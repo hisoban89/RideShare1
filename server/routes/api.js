@@ -2,20 +2,13 @@ var express  = require('express');
 var router   = express.Router();
 var passport = require('passport');
 
-var User = require('../models/user.js');
+var User    = require('../models/user.js');
+var Booking = require('../models/booking.js');
 
 // Register
 router.post('/register', function(req, res) {
-  // var fname = req.body.fname;
-  // var lname = req.body.lname;
-  // var username = req.body.username;
-  // //var password = req.body.password;
-  // console.log(fname);
-  // console.log(username);
-
   User.register(new User({fname: req.body.fname, lname: req.body.lname, username: req.body.username }),
     req.body.password, function(err, account) {
-      //console.log(req.body.fname);
     if (err) {
       return res.status(500).json({
         err: err
@@ -70,6 +63,23 @@ router.get('/status', function(req, res) {
   }
   res.status(200).json({
     status: true
+  });
+});
+
+// Booking
+router.post('/booking', function(req, res) {
+  Booking.booking(new Booking({booking: req.body.booking }),
+    function(err, account) {
+    if (err) {
+      return res.status(500).json({
+        err: err
+      });
+    }
+    passport.authenticate('local')(req, res, function () {
+      return res.status(200).json({
+        status: 'Booking successful!'
+      });
+    });
   });
 });
 

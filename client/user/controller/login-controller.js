@@ -3,6 +3,9 @@ myApp.controller('loginController',
   function ($scope, $location, AuthService) {
 
     $scope.login = function () {
+
+      // $scope.authService = AuthService;
+      // console.log(authService);
     //alert($scope.loginForm.username);
     
     //$scope.message = $scope.loginForm.username;
@@ -24,7 +27,7 @@ myApp.controller('loginController',
         // handle error
         .catch(function () {
           $scope.error        = true;
-          $scope.errorMessage = "Invalid username and/or password";
+          $scope.errorMessage = "Invalid username or password";
           $scope.disabled     = false;
           $scope.loginForm    = {};
         });

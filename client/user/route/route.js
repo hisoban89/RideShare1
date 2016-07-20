@@ -20,6 +20,10 @@ myApp.config(function ($routeProvider) {
       controller: 'registerController',
       access: {restricted: false}
     })
+    .when('/booking', {
+      controller: 'bookingController',
+      access: {restricted: true}
+    })
     .otherwise({
       redirectTo: '/'
     });

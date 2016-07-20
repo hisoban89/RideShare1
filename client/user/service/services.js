@@ -11,7 +11,8 @@ angular.module('myApp').factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register
+      register: register,
+      booking: booking
     });
 
     function isLoggedIn() {
@@ -114,16 +115,28 @@ angular.module('myApp').factory('AuthService',
 
     }
 
-    // function GetByUsername(username) {
-    //         return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
-    //     }
-
-    function GetByUsername(username) {
+    function booking(booking) {
+      // create a new instance of deferred
       var deferred = $q.defer();
-      var filtered = $filter('filter')(getUsers(), { username: username });
-      var user = filtered.length ? filtered[0] : null;
-      deferred.resolve(user);
+
+      // send a post request to the server
+      $http.post('/user/booking',
+        {booking: booking})
+        // handle success
+        .success(function (data, status) {
+          if(status === 200 && data.status){
+            deferred.resolve();
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+      // return promise object
       return deferred.promise;
+
     }
 
 

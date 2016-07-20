@@ -1,24 +1,3 @@
-<!-- <div class="col-md-4">
-  <h1>Login</h1>
-  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-  <form class="form" ng-submit="login()">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username" ng-model="loginForm.username" required>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-        <input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
-      </div>
-      <div>
-        <button type="submit" class="btn btn-default" ng-disabled="disabled">Login</button>
-      </div>
-  </form>
-</div> -->
-
-<!-- ======================================== -->
-<!-- <div ng-style="{ 'width' : width, 'background' : bgColor }"> -->
-
 <div class="header clearfix">
   <h4 class="loginHeading">Login</h4>
 </div>
@@ -26,7 +5,6 @@
 <!-- Start container-->
 <div class="container"> 
     
-
   <div class="headerImg"> 
       <img src="./partials/images/login/login_logo.png" alt="rideShare" class="img-responsive center-block">
   </div>
@@ -35,11 +13,9 @@
       <img src="./partials/images/login/driverLog_icons.png" alt="rideShare" class="img-responsive center-block">
   </div>
 
-  <!-- <div class="navigationController" ng-controller="navigationController"> -->
   <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
     <form name="form" ng-submit="login()">
       <div class="row top-buffer"></div>
-      <!-- <div class="row top-buffer"></div> -->
 
       <div class="form-group">
         <input type="text" class="register-input" placeholder="User name" name="username" ng-model="loginForm.username" minlength="3" maxlength="20" required>
@@ -49,7 +25,6 @@
         <input type="password" class="register-input" name="password" placeholder="Password" ng-model="loginForm.password" minlength="3" maxlength="20" required>
       </div>
 
-      <!-- <div class="row top-buffer"></div> -->
       <div class="row top-buffer"></div>
       <button type="submit" class="btn btn-info btn-block" ng-disabled="disabled">Login</button>
     </form>
@@ -65,5 +40,3 @@
   </div>
 
 </div> <!-- End container div -->
-
-<!-- </div> -->
