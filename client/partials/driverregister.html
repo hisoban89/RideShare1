@@ -1,0 +1,49 @@
+<div class="header clearfix">
+  <h4 class="loginHeading">Driver Register</h4>
+  <button class="offcanvas__trigger--open btn" data-offcanvas-open="my-navigation" onclick="window.location.href = '#/driverlogin'" style="outline:0;">
+    <img src="./partials/images/register/back_btn.png" alt="rideShare" class="img-responsive" style="width:30px; height:28px";>
+  </button>
+</div>
+
+<div class="container">
+
+  <div class="row top-buffer"></div>
+
+  <div class="row">
+       <div class="headerImgReg"> 
+        <a href="#">
+          <img src="./partials/images/register/add_picture.png" alt="rideShare" class="img-responsive center-block">
+          <img src="./partials/images/register/uploadpicture.png" alt="rideShare" class="img-responsive center-block">
+        </a>
+      </div>
+      
+  </div>
+
+  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" ng-submit="driverregister()">
+    <div class="form-group col-xs-6">
+      <input type="text" class="register-input" name="driverfname" placeholder="First name" ng-model="registerForm.driverfname" minlength="3" maxlength="20" required></input>
+    </div>
+    <div class="form-group col-xs-6">
+      <input type="text" class="register-input" name="driverlname" placeholder="Last name" ng-model="registerForm.driverlname" minlength="3" maxlength="20" required></input>
+    </div>
+    <div class="row top-buffer"></div>
+    <div class="row top-buffer"></div>
+    <div class="form-group col-xs-12">
+      <input type="text" class="register-input" name="driverusername" placeholder="User name" ng-model="registerForm.driverusername" required>
+    </div>
+    <div class="row top-buffer"></div>
+    <div class="row top-buffer"></div>
+    <div class="form-group col-xs-12">
+      <input type="password" class="register-input" name="driverpassword" placeholder="Password" ng-model="registerForm.driverpassword" required>
+    </div>
+    <div class="row top-buffer"></div>
+    <div class="row top-buffer"></div>
+    <div class="form-group col-xs-12">
+      <button type="submit" class="btn btn-warning btn-block">Create</button>
+    </div>
+  </form>
+
+  <div class="row top-buffer"></div>
+      
+</div> <!-- End container div -->

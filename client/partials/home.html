@@ -406,35 +406,32 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
 
 // Multiple markers
-
-  // var image        = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-  var image_cabs = 'http://maps.google.com/mapfiles/ms/micons/cabs.png';
-  var image_person = 'http://maps.google.com/mapfiles/ms/micons/man.png';
+  var image_cabs1   = './partials/images/main/car.png';
+  var image_person1 = './partials/images/main/person.png';
 
     var infoWindow = new google.maps.InfoWindow({map: map});
     //
     var infowindow = new google.maps.InfoWindow();
 
-      var marker, i;
+    var marker, i;
 
-      for (i = 0; i < locations.length; i++) {  
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-          icon: image_cabs,
-          map: map
-        });
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        icon: image_cabs1,
+        map: map
+      });
 
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      }
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
 
 
 // geolocation
-
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -445,7 +442,7 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
         var marker = new google.maps.Marker({
         position: pos,
-        icon: image_person,
+        icon: image_person1,
         map: map,
         title: 'View Details'
       });
@@ -480,29 +477,3 @@ For the women and men who drive with Ride Share, our app represents a flexible n
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBek2QKJkAxIhJ6AHP1Mu0hMa_lGpN-mkg&libraries=places&callback=initMap" async defer></script>
 
-    <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBek2QKJkAxIhJ6AHP1Mu0hMa_lGpN-mkg&callback=initMap">
-    </script> -->
-
-
-
-
-
-<!-- <div style="height:500px;width:500px;max-width:100%;list-style:none; transition: none;overflow:hidden;">
-
-<div id="gmap-display" style="height:100%; width:100%;max-width:100%;">
-
-<iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Colombo+03,+Colombo,+Western+Province,+Šrilanka&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
-
-</div>
-  <a class="embedded-map-code" href="https://www.dog-checks.com" id="make-map-data">dog-checks.com</a>
-
-  <style>#gmap-display .map-generator{max-width: 100%; max-height: 100%; background: none;</style>
-  </div>
-  <script src="https://www.dog-checks.com/google-maps-authorization.js?id=fcf864e5-c227-6c53-9d23-af5f8e1f50f4&c=embedded-map-code&u=1468822553" defer="defer" async="async"></script> -->
-
-<!-- <h1>Yo!</h1>
-
-<div ng-controller="logoutController">
-  <a ng-click='logout()' class="btn btn-default">Logout</a>
-</div> -->

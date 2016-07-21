@@ -8,7 +8,7 @@ myApp.config(function ($routeProvider) {
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
-      controller: 'loginController',
+      controller: 'driverloginController',
       access: {restricted: false}
     })
     .when('/driverlogin', {
@@ -16,18 +16,14 @@ myApp.config(function ($routeProvider) {
       controller: 'driverloginController',
       access: {restricted: false}
     })
-    .when('/logout', {
-      controller: 'logoutController',
+    .when('/driverlogout', {
+      controller: 'driverlogoutController',
       access: {restricted: true}
     })
-    .when('/register', {
-      templateUrl: 'partials/register.html',
-      controller: 'registerController',
+    .when('/driverregister', {
+      templateUrl: 'partials/driverregister.html',
+      controller: 'driverregisterController',
       access: {restricted: false}
-    })
-    .when('/booking', {
-      controller: 'bookingController',
-      access: {restricted: true}
     })
     .otherwise({
       redirectTo: '/'
@@ -37,10 +33,10 @@ myApp.config(function ($routeProvider) {
 myApp.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
-      AuthService.getUserStatus()
+      AuthService.getStatus()
       .then(function(){
-        if (next.access.restricted && !AuthService.isLoggedIn()){
-          $location.path('/login');
+        if (next.access.restricted && !AuthService.isDriverLoggedIn()){
+          $location.path('/driverlogin');
           $route.reload();
         }
       });

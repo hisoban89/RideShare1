@@ -1,5 +1,5 @@
 <div class="header clearfix">
-  <h4 class="loginHeading">Login</h4>
+  <h4 class="loginHeading">Driver Login</h4>
 </div>
 
 <!-- Start container-->
@@ -10,26 +10,28 @@
   </div>
 
   <div class="headerImg1"> 
-      <img src="./partials/images/login/driverLog_icons.png" alt="rideShare" class="img-responsive center-block" usemap="#planetmap">
+      <img src="./partials/images/login/driverLogActive_icons.png" alt="rideShare" class="img-responsive center-block" usemap="#planetmap">
   </div>
 
   <map name="planetmap">
-    <area shape="circle" coords="290,80,55" href="#/driver-login" style="outline:0;">
+    <area shape="circle" coords="120,78,40" href="#/login" style="outline:0;">
   </map>
 
   <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-    <form name="form" ng-submit="login()">
+    <form name="form" ng-submit="driverlogin()">
       <div class="row top-buffer"></div>
 
       <div class="form-group">
-        <input type="text" class="register-input" placeholder="User name" name="username" ng-model="loginForm.username" minlength="3" maxlength="20" required>
+        <input type="text" class="register-input" placeholder="User name" name="driverusername" ng-model="loginForm.driverusername" minlength="3" maxlength="20" required>
       </div>
       <div class="row top-buffer"></div>
       <div class="form-group">
-        <input type="password" class="register-input" name="password" placeholder="Password" ng-model="loginForm.password" minlength="3" maxlength="20" required>
+        <input type="password" class="register-input" name="driverpassword" placeholder="Password" ng-model="loginForm.driverpassword" minlength="3" maxlength="20" required>
       </div>
 
       <div class="row top-buffer"></div>
+      <div class="row top-buffer"></div>
+
       <button type="submit" class="btn btn-info btn-block" ng-disabled="disabled">Login</button>
     </form>
 
@@ -39,7 +41,7 @@
 
     <div class="row top-buffer"></div>
     
-    <button type="submit" onclick="window.location.href = '#/register'" class="btn btn-warning btn-block">Register</button>
+    <button type="submit" onclick="window.location.href = '#/driverregister'" class="btn btn-warning btn-block">Register << needs to remove>> </button>
 
   </div>
 

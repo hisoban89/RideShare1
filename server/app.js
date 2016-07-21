@@ -17,12 +17,15 @@ mongoose.connect('mongodb://localhost/ride-share1');
 var User    = require('./models/user.js');
 // booking schema/model
 var Booking = require('./models/booking.js');
+// driver schema/model
+var Driver  = require('./models/driver.js');
 
 // create instance of express
 var app = express();
 
 // require routes
-var routes = require('./routes/api.js');
+var routes       = require('./routes/api.js');
+var driverroutes = require('./routes/driverapi.js');
 
 // define middleware
 app.use(express.static(path.join(__dirname, '../client')));
@@ -44,8 +47,18 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// =================================
+passport.use(new localStrategy(Driver.authenticate()));
+passport.serializeUser(Driver.serializeUser());
+passport.deserializeUser(Driver.deserializeUser());
+
+app.use('/driver/', driverroutes);
+
+// ================================
+
 // routes
 app.use('/user/', routes);
+
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
@@ -65,5 +78,25 @@ app.use(function(err, req, res) {
     error: {}
   }));
 });
+
+
+// ======================
+
+// // error hndlers
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.driverstatus = 404;
+//   next(err);
+// });
+
+// app.use(function(err, req, res) {
+//   res.driverstatus(err.driverstatus || 500);
+//   res.end(JSON.stringify({
+//     message: err.message,
+//     error: {}
+//   }));
+// });
+
+// ======================
 
 module.exports = app;
