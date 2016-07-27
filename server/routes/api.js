@@ -3,7 +3,7 @@ var router   = express.Router();
 var passport = require('passport');
 
 var User    = require('../models/user.js');
-var Booking = require('../models/booking.js');
+// var Booking = require('../models/booking.js');
 
 // Register
 router.post('/register', function(req, res) {

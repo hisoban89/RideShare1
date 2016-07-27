@@ -7,8 +7,8 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var Driver = new Schema({
 	driverfname: String,
 	driverlname: String,
-	driverusername: String,
-	driverpassword: String
+	username: String,
+	password: String
 });
 
 Driver.plugin(passportLocalMongoose);

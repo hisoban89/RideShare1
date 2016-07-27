@@ -10,22 +10,24 @@ var path           = require('path');
 var passport       = require('passport');
 var localStrategy  = require('passport-local' ).Strategy;
 
+// var Pusher = require('pusher');
+
 // mongoose
 mongoose.connect('mongodb://localhost/ride-share1');
 
 // user schema/model
 var User    = require('./models/user.js');
 // booking schema/model
-var Booking = require('./models/booking.js');
+// var Booking = require('./models/booking.js');
 // driver schema/model
-var Driver  = require('./models/driver.js');
+// var Driver  = require('./models/driver.js');
 
 // create instance of express
 var app = express();
 
 // require routes
 var routes       = require('./routes/api.js');
-var driverroutes = require('./routes/driverapi.js');
+// var driverroutes = require('./routes/driverapi.js');
 
 // define middleware
 app.use(express.static(path.join(__dirname, '../client')));
@@ -48,11 +50,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // =================================
-passport.use(new localStrategy(Driver.authenticate()));
-passport.serializeUser(Driver.serializeUser());
-passport.deserializeUser(Driver.deserializeUser());
 
-app.use('/driver/', driverroutes);
+// passport.use(new localStrategy(Driver.authenticate()));
+// passport.serializeUser(Driver.serializeUser());
+// passport.deserializeUser(Driver.deserializeUser());
+
+// app.use('/driver/', driverroutes);
 
 // ================================
 
@@ -80,23 +83,21 @@ app.use(function(err, req, res) {
 });
 
 
-// ======================
+// =====================
 
-// // error hndlers
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.driverstatus = 404;
-//   next(err);
+// var pusher = new Pusher({
+//   appId: '228906',
+//   key: '03dd770b1187e233a763',
+//   secret: '36fdb786d08c1d12e6ee',
+//   encrypted: true
 // });
 
-// app.use(function(err, req, res) {
-//   res.driverstatus(err.driverstatus || 500);
-//   res.end(JSON.stringify({
-//     message: err.message,
-//     error: {}
-//   }));
+// pusher.trigger('test_channel', 'my_event', {
+//   "message": "Push notification from nodejs..."
 // });
 
-// ======================
+// =====================
+
+
 
 module.exports = app;

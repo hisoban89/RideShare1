@@ -11,8 +11,8 @@ angular.module('myApp').factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register,
-      booking: booking
+      register: register
+      // booking: booking
     });
 
     function isLoggedIn() {
@@ -115,29 +115,29 @@ angular.module('myApp').factory('AuthService',
 
     }
 
-    function booking(booking) {
-      // create a new instance of deferred
-      var deferred = $q.defer();
+    // function booking(booking) {
+    //   // create a new instance of deferred
+    //   var deferred = $q.defer();
 
-      // send a post request to the server
-      $http.post('/user/booking',
-        {booking: booking})
-        // handle success
-        .success(function (data, status) {
-          if(status === 200 && data.status){
-            deferred.resolve();
-          } else {
-            deferred.reject();
-          }
-        })
-        // handle error
-        .error(function (data) {
-          deferred.reject();
-        });
-      // return promise object
-      return deferred.promise;
+    //   // send a post request to the server
+    //   $http.post('/user/booking',
+    //     {booking: booking})
+    //     // handle success
+    //     .success(function (data, status) {
+    //       if(status === 200 && data.status){
+    //         deferred.resolve();
+    //       } else {
+    //         deferred.reject();
+    //       }
+    //     })
+    //     // handle error
+    //     .error(function (data) {
+    //       deferred.reject();
+    //     });
+    //   // return promise object
+    //   return deferred.promise;
 
-    }
+    // }
 
 
 

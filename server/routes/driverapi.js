@@ -4,10 +4,14 @@ var passport = require('passport');
 
 var Driver   = require('../models/driver.js');
 
-// Register
+// Driverregister
 router.post('/driverregister', function(req, res) {
-  Driver.driverregister(new Driver({driverfname: req.body.driverfname, driverlname: req.body.driverlname, driverusername: req.body.driverusername }),
-    req.body.driverpassword, function(err, account) {
+  Driver.register(new Driver({
+    driverfname: req.body.driverfname,
+    driverlname: req.body.driverlname,
+    username: req.body.dusername
+  }),
+    req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
         err: err
@@ -46,15 +50,15 @@ router.post('/driverlogin', function(req, res, next) {
 });
 
 // Logout
-router.get('/driverlogout', function(req, res) {
-  req.driverlogout();
+router.get('/logout', function(req, res) {
+  req.logout();
   res.status(200).json({
     status: 'Bye!'
   });
 });
 
 // Authentication status
-router.get('/status', function(req, res) {
+router.get('/driverstatus', function(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(200).json({
       status: false

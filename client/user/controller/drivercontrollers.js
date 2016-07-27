@@ -8,7 +8,7 @@ angular.module('myApp').controller('driverloginController',
       $scope.disabled = true;
 
       // call login from service
-      AuthService.driverlogin($scope.loginForm.driverusername, $scope.loginForm.driverpassword)
+      AuthService.driverlogin($scope.loginForm.dusername, $scope.loginForm.dpassword)
         // handle success
         .then(function () {
           $location.path('/');
@@ -31,12 +31,12 @@ angular.module('myApp').controller('driverlogoutController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
-    $scope.driverlogout = function () {
+    $scope.logout = function () {
 
       // call logout from service
-      AuthService.driverlogout()
+      AuthService.logout()
         .then(function () {
-          $location.path('/driver-login');
+          $location.path('/driverlogin');
         });
 
     };
@@ -52,8 +52,13 @@ angular.module('myApp').controller('driverregisterController',
       $scope.error    = false;
       $scope.disabled = true;
 
-      // call driver register from service
-      AuthService.driverregister($scope.registerForm.driverfname, $scope.registerForm.driverlname, $scope.registerForm.driverusername, $scope.registerForm.driverpassword)
+      // call driverregister from service
+      AuthService.driverregister(
+        $scope.registerForm.driverfname,
+        $scope.registerForm.driverlname,
+        $scope.registerForm.username,
+        $scope.registerForm.password
+      )
         // handle success
         .then(function () {
           $location.path('/driverlogin');

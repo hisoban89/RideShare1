@@ -10,7 +10,7 @@ angular.module('myApp').factory('AuthService',
       isDriverLoggedIn: isDriverLoggedIn,
       getStatus: getStatus,
       driverlogin: driverlogin,
-      driverlogout: driverlogout,
+      logout: logout,
       driverregister: driverregister,
     });
 
@@ -23,7 +23,7 @@ angular.module('myApp').factory('AuthService',
     }
 
     function getStatus() {
-      return $http.get('/driver/status')
+      return $http.get('/driver/driverstatus')
       // handle success
       .success(function (data) {
         if(data.status){
@@ -38,14 +38,14 @@ angular.module('myApp').factory('AuthService',
       });
     }
 
-    function driverlogin(driverusername, driverpassword) {
+    function driverlogin(dusername, dpassword) {
 
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
       $http.post('/driver/driverlogin',
-        {driverusername: driverusername, driverpassword: driverpassword})
+        {username: dusername, password: dpassword})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
@@ -67,13 +67,13 @@ angular.module('myApp').factory('AuthService',
 
     }
 
-    function driverlogout() {
+    function logout() {
 
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get('/driver/driverlogout')
+      $http.get('/driver/logout')
         // handle success
         .success(function (data) {
           driver = false;
@@ -90,13 +90,12 @@ angular.module('myApp').factory('AuthService',
 
     }
 
-    function driverregister(driverfname, driverlname, driverusername, driverpassword) {
+    function driverregister(driverfname, driverlname, username, password) {
       // create a new instance of deferred
       var deferred = $q.defer();
-
       // send a post request to the server
       $http.post('/driver/driverregister',
-        {driverfname: driverfname, driverlname: driverlname, driverusername: driverusername, driverpassword: driverpassword})
+        {driverfname: driverfname, driverlname: driverlname, username: username, password: password})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){

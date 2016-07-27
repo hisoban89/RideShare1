@@ -8,15 +8,15 @@ myApp.config(function ($routeProvider) {
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
-      controller: 'driverloginController',
+      controller: 'loginController',
       access: {restricted: false}
     })
-    .when('/driverlogin', {
-      templateUrl: 'partials/driverlogin.html',
-      controller: 'driverloginController',
-      access: {restricted: false}
-    })
-    .when('/driverlogout', {
+    // .when('/driverlogin', {
+    //   templateUrl: 'partials/driverlogin.html',
+    //   controller: 'driverloginController',
+    //   access: {restricted: false}
+    // })
+    .when('/logout', {
       controller: 'driverlogoutController',
       access: {restricted: true}
     })
